@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.itheima.security.uaa.dao.UserDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.itheima.security.uaa.entity.UserEntity" id="userMap">
+        <result property="id" column="id"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="fullname" column="fullname"/>
+        <result property="mobile" column="mobile"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+    <select id="queryAllPerms" resultType="java.lang.String">
+        SELECT DISTINCT tp.`code` FROM `t_user_role` tur
+               LEFT JOIN `t_role_permission` trp ON tur.role_id = trp.role_id
+               LEFT JOIN `t_permission` tp ON trp.permission_id = tp.id
+        WHERE tur.user_id = #{id};
+    </select>
+
+
+</mapper>

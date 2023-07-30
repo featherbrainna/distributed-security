@@ -1,0 +1,30 @@
+server:
+  port: 53020
+  servlet:
+    context-path: /uaa
+
+spring:
+  application:
+    name: uaa-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/user_db?serverTimezone=GMT%2B8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost
+    sentinel:
+      transport:
+        dashboard: localhost:8080
+
+
+logging:
+  level:
+    root: info
+    org.springframework.web: info
+    org.springframework.security: debug
+
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml

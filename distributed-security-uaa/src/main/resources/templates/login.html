@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>登录页面</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}"/>
+</head>
+<body>
+    <h1>请登录！</h1>
+    <form method="post" th:action="@{/login}">
+        <table>
+            <tr align="center">
+                <td>
+                    <label for="username">用户名:</label>
+                </td>
+                <td>
+                    <input type="text" name="username" id="username">
+                </td>
+                <td>
+                    <!--<span class="validationError" th:if="${authenticationRequest!=null && #fields.hasErrors('username')}" th:errors="*{username}">
+                        username error
+                    </span><br/>-->
+                    <span class="validationError" th:if="${errors!=null && #maps.containsKey(errors,'username')}" th:text="${errors.username}">
+                        username error
+                    </span><br/>
+                </td>
+            </tr>
+            <tr align="center">
+                <td>
+                    <label for="password">密码:</label>
+                </td>
+                <td>
+                    <input type="password" name="password" id="password">
+                </td>
+                <td>
+                    <!--<span class="validationError" th:if="${authenticationRequest!=null && #fields.hasErrors('password')}" th:errors="*{password}">
+                        password error
+                    </span><br/>-->
+                    <span class="validationError" th:if="${errors!=null && #maps.containsKey(errors,'password')}" th:text="${errors.password}">
+                        password error
+                    </span><br/>
+                </td>
+            </tr>
+            <tr align="center">
+                <td>
+                    <input type="submit" value="登录">
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
